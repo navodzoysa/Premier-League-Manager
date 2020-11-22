@@ -22,7 +22,7 @@ public class Menu {
 				userChoice = scanner.nextInt();
 			}
 			catch(InputMismatchException e) {
-				System.out.println("Input Mismatch!!! Please enter a number");
+				System.out.print("");
 			}
 			scanner.nextLine();
 			switch(userChoice) {
@@ -44,45 +44,28 @@ public class Menu {
 				case 6:
 					break menuLoop; 
 				default:
-					System.out.println("Invalid Input!!! Please select a choice from the menu");
+					System.out.println("Invalid Input!!! Please select a valid number from the menu");
 			}
 		}
 	}
 
 	public static void addClub() {
-		while(true) {
 			try{
 				System.out.println("Enter the name of the club");
 				String clubName = scanner.nextLine();
 				if(premierLeague.checkForClub(clubName)) {
-					System.out.println(clubName + " is already in the premier league\n");
-					continue;
+					System.out.println("\n" + clubName + " is already in the premier league");
+					return;
 				}
 				System.out.println("Enter the location of the club");
 				String clubLocation = scanner.nextLine();
-				System.out.println("Enter the wins of the club");
-				int clubWins = scanner.nextInt();
-				System.out.println("Enter the draws of the club");
-				int clubDraws = scanner.nextInt();
-				System.out.println("Enter the defeats of the club");
-				int clubDefeats = scanner.nextInt();
-				System.out.println("Enter the goals received of the club");
-				int clubGoalsReceived = scanner.nextInt();
-				System.out.println("Enter the goals scored of the club");
-				int clubScored = scanner.nextInt();
-				System.out.println("Enter the points of the club");
-				int clubPoints = scanner.nextInt();
-				System.out.println("Enter the matches played of the club");
-				int clubMatches = scanner.nextInt();
-				SportsClub club = new FootballClub(clubName, clubLocation, clubWins, clubDraws, clubDefeats, clubGoalsReceived, clubScored, clubPoints, clubMatches);
+				SportsClub club = new FootballClub(clubName, clubLocation);
 				premierLeague.addClub(club);
-				break;
 			}
 			catch(InputMismatchException e) {
-				System.out.println("\nInput Invalid!!! Please enter numerical values except for name and location\n");
+				System.out.println("\nInput Invalid!!! Please enter valid characters");
 				scanner.nextLine();
 			}
-		}
 	}
 
 	public static void deleteClub() {
@@ -91,7 +74,7 @@ public class Menu {
 			return;
 		}
 		premierLeague.displayClubNames();
-		System.out.println("Enter the name of the club");
+		System.out.println("Enter the name of the club to delete from the above list");
 		String clubNameDelete = scanner.nextLine();
 		if(!premierLeague.checkForClub(clubNameDelete)) {
 			System.out.println(clubNameDelete +" does not exist in the premier league");
@@ -106,7 +89,7 @@ public class Menu {
 			return;
 		}
 		premierLeague.displayClubNames();
-		System.out.println("Enter the name of the club");
+		System.out.println("Enter the name of the club from the above list to see statistics");
 		String clubNameFind = scanner.nextLine();
 		if(!premierLeague.checkForClub(clubNameFind)) {
 			System.out.println(clubNameFind +" does not exist in the premier league");
@@ -129,7 +112,7 @@ public class Menu {
 			return;
 		}
 		premierLeague.displayClubNames();
-		System.out.println("Enter the home team from the above club list");
+		System.out.println("\nEnter the home team from the above club list");
 		String teamA = scanner.nextLine();
 		if(!premierLeague.checkForClub(teamA)) {
 			System.out.println(teamA + " does not exist in the premier league");
@@ -149,16 +132,20 @@ public class Menu {
 		}
 
 		System.out.println("Enter the goals scored by " + teamA);
-		int teamAScore = Integer.parseInt(scanner.nextLine());
+		int teamAScore = scanner.nextInt();
 		System.out.println("Enter the goals scored by " + teamB);
-		int teamBScore = Integer.parseInt(scanner.nextLine());
-		System.out.println("Enter the day, month, year(DD/MM/YYYY)");
-		String date = scanner.nextLine();
-		String[] dateArray = date.split("/", 3);
-		System.out.println("Enter the time of the match(HH:MM)");
-		String time = scanner.nextLine();
-		String[] timeArray = time.split(":", 2);
-		DateTime matchDate = new DateTime(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[2]), Integer.parseInt(timeArray[0]), Integer.parseInt(timeArray[1]));
+		int teamBScore = scanner.nextInt();
+		System.out.println("Enter the day(DD)");
+		int day = scanner.nextInt();
+		System.out.println("Enter the month(MM)");
+		int month = scanner.nextInt();
+		System.out.println("Enter the year(YYYY)");
+		int year = scanner.nextInt();
+		System.out.println("Enter the hour of the match(HH)");
+		int hour = scanner.nextInt();
+		System.out.println("Enter the minutes of the match(MM)");
+		int minute = scanner.nextInt();
+		DateTime matchDate = new DateTime(day, month, year, hour, minute);
 		Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
 		premierLeague.addMatch(match);
 	}

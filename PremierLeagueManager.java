@@ -2,6 +2,7 @@ import java.util.*;
 
 public class PremierLeagueManager implements LeagueManager {
 	private List<SportsClub> clubList = new ArrayList<>();
+	private List<Match> matchList = new ArrayList<>();
 
 	@Override
 	public void addClub(SportsClub newClub) {
@@ -22,12 +23,14 @@ public class PremierLeagueManager implements LeagueManager {
 
 	@Override
 	public void displayStatistics(String clubName) {
+		System.out.print("-------------------------------------");
 		for(SportsClub club : clubList) {
 			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
 				System.out.println(club);
 				break;
 			}
 		}
+		System.out.println("-------------------------------------");
 	}
 
 	@Override
@@ -56,6 +59,32 @@ public class PremierLeagueManager implements LeagueManager {
 
 	@Override
 	public void addMatch(Match match) {
+		FootballClub teamA = ((FootballClub)match.getTeamA());
+		FootballClub teamB = ((FootballClub)match.getTeamB());
+
+		teamA.setGoalsScored(match.getTeamAScore());
+		teamB.setGoalsScored(match.getTeamBScore());
+		teamA.setGoalsReceived(match.getTeamBScore());
+		teamB.setGoalsReceived(match.getTeamAScore());
+
+		if(match.getTeamAScore() > match.getTeamBScore()) {
+			teamA.setWins(1);
+			teamB.setDefeats(1);
+			teamA.setClubPoints(3);
+		}
+		else if(match.getTeamAScore() < match.getTeamBScore()) {
+			teamB.setWins(1);
+			teamA.setDefeats(1);
+			teamB.setClubPoints(3);
+		}
+		else if (match.getTeamAScore() == match.getTeamBScore()) {
+			teamA.setDraws(1);
+			teamB.setDraws(1);
+			teamA.setClubPoints(1);
+			teamB.setClubPoints(1);
+		}
+
+		matchList.add(match);
 		System.out.println(match);
 		System.out.println("Successfully added match");
 	}
@@ -95,8 +124,11 @@ public class PremierLeagueManager implements LeagueManager {
 	}
 
 	public void displayClubNames() {
+		System.out.println("\nList of clubs in the premier league");
+		System.out.println("-------------------------------------");
 		for(SportsClub club : clubList) {
 			System.out.println(club.getClubName());
 		}
+		System.out.println("-------------------------------------\n");
 	}
 }
