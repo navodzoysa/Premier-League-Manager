@@ -76,6 +76,10 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 		return matchesPlayed;
 	}
 
+	public int getGoalDifference() {
+		return this.goalsScored - this.goalsReceived;
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() + 
@@ -90,6 +94,12 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 
 	@Override
 	public int compareTo(FootballClub club) {
+		if(this.getClubPoints() == club.getClubPoints()) {
+			if(this.getGoalDifference() == club.getGoalDifference()) {
+				return this.getGoalsScored() - club.getGoalsScored();
+			}
+			return this.getGoalDifference() - club.getGoalDifference();
+		}
 		return this.getClubPoints() - club.getClubPoints();
 	}
 }

@@ -1,13 +1,13 @@
 public class Match {
-	private FootballClub teamA;
-	private FootballClub teamB;
+	private SportsClub teamA;
+	private SportsClub teamB;
 	private int teamAScore;
 	private int teamBScore;
 	private DateTime matchDate;
 
 	public Match() {}
 	
-	public Match(FootballClub teamA, FootballClub teamB,int teamAScore, int teamBScore, DateTime matchDate) {
+	public Match(SportsClub teamA, SportsClub teamB,int teamAScore, int teamBScore, DateTime matchDate) {
 		this.teamA = teamA;
 		this.teamB = teamB;
 		this.teamAScore = teamAScore;
