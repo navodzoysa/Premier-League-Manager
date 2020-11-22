@@ -1,10 +1,12 @@
 import java.util.*;
+import java.io.IOException;
 
 public class Menu {
 	private static PremierLeagueManager premierLeague = new PremierLeagueManager();
 	private static Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		premierLeague.loadFromFile("clubObjects.txt");
 		System.out.println("Welcome to the Premier League Manager");
 		
 		menuLoop:
@@ -42,6 +44,7 @@ public class Menu {
 					addMatch();
 					break;
 				case 6:
+					premierLeague.saveToFile("clubObjects.txt");
 					break menuLoop; 
 				default:
 					System.out.println("Invalid Input!!! Please select a valid number from the menu");

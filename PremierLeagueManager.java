@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.*;
 
-public class PremierLeagueManager implements LeagueManager {
+public class PremierLeagueManager implements Serializable, LeagueManager {
 	private List<SportsClub> clubList = new ArrayList<>();
 	private List<Match> matchList = new ArrayList<>();
 
@@ -90,10 +91,46 @@ public class PremierLeagueManager implements LeagueManager {
 	}
 
 	@Override
-	public void saveToFile() {}
+	public void saveToFile(String fileName) throws IOException {
+		FileOutputStream fileOutput = new FileOutputStream(fileName);
+		ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+		
+		try{
+			for(SportsClub club : clubList) {
+				objectOutput.writeObject(club);
+			}
+			System.out.println("All clubs have been saved successfully");
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("File Not found");
+		}
+		finally {
+			objectOutput.close();
+			fileOutput.close();
+		}
+		
+	}
 
 	@Override
-	public void loadFromFile() {}
+	public void loadFromFile(String fileName) throws IOException, ClassNotFoundException {
+		
+		try{
+			File file = new File(fileName);
+			file.createNewFile();
+			FileInputStream fileInput = new FileInputStream(fileName);
+			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+			for(;;) {
+				clubList.add((SportsClub) objectInput.readObject());
+			}
+		}
+		catch(FileNotFoundException e) {
+			return;
+		}
+		catch(EOFException e) {
+			System.out.println("All clubs have been loaded successfully\n");
+			return;
+		}
+	}
 
 	public boolean isClubListEmpty() {
 		return clubList.isEmpty();

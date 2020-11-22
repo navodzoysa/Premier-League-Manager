@@ -1,4 +1,6 @@
-public class FootballClub extends SportsClub implements Comparable<FootballClub> {
+import java.io.Serializable;
+
+public class FootballClub extends SportsClub implements Comparable<FootballClub>, Serializable {
 	private int wins;
 	private int draws;
 	private int defeats;
