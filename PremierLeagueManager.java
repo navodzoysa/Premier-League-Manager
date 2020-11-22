@@ -21,17 +21,12 @@ public class PremierLeagueManager implements LeagueManager {
 
 	@Override
 	public void deleteClub(String clubName) {
-		Boolean clubExists = false;
 		for(SportsClub club : clubList) {
 			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
 				clubList.remove(club);
 				System.out.println("Successfully removed club");
-				clubExists = true;
 				break;
 			}
-		}
-		if(!clubExists) {
-			System.out.println("Club does not exist!!!");
 		}
 	}
 
@@ -85,6 +80,7 @@ public class PremierLeagueManager implements LeagueManager {
 	@Override
 	public void addMatch(Match match) {
 		System.out.println(match);
+		System.out.println("Successfully added match");
 	}
 
 	@Override
@@ -92,6 +88,14 @@ public class PremierLeagueManager implements LeagueManager {
 
 	@Override
 	public void loadFromFile() {}
+
+	public boolean isClubListEmpty() {
+		return clubList.isEmpty();
+	}
+
+	public int clubListLength() {
+		return clubList.size();
+	}
 
 	public boolean checkForClub(String clubName) {
 		for(SportsClub club : clubList) {
@@ -114,13 +118,8 @@ public class PremierLeagueManager implements LeagueManager {
 	}
 
 	public void displayClubNames() {
-		if(!clubList.isEmpty()) {
-			for(SportsClub club : clubList) {
-				System.out.println(club.getClubName());
-			}
-		}
-		else {
-			System.out.println("No clubs found!!!");
+		for(SportsClub club : clubList) {
+			System.out.println(club.getClubName());
 		}
 	}
 }
