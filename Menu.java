@@ -94,7 +94,7 @@ public class Menu {
 		System.out.println("Enter the name of the club");
 		String clubNameDelete = scanner.nextLine();
 		if(!premierLeague.checkForClub(clubNameDelete)) {
-			System.out.println("Club does not exist in the premier league");
+			System.out.println(clubNameDelete +" does not exist in the premier league");
 			return;
 		}
 		premierLeague.deleteClub(clubNameDelete);
@@ -108,6 +108,10 @@ public class Menu {
 		premierLeague.displayClubNames();
 		System.out.println("Enter the name of the club");
 		String clubNameFind = scanner.nextLine();
+		if(!premierLeague.checkForClub(clubNameFind)) {
+			System.out.println(clubNameFind +" does not exist in the premier league");
+			return;
+		}
 		premierLeague.displayStatistics(clubNameFind);
 	}
 
@@ -139,6 +143,11 @@ public class Menu {
 		}
 		SportsClub clubA = premierLeague.getClubFromList(teamA);
 		SportsClub clubB = premierLeague.getClubFromList(teamB);
+		if(clubA.equals(clubB)) {
+			System.out.println("Cannot play against the same team!!! Please select two separate teams");
+			return;
+		}
+
 		System.out.println("Enter the goals scored by " + teamA);
 		int teamAScore = Integer.parseInt(scanner.nextLine());
 		System.out.println("Enter the goals scored by " + teamB);
