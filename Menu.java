@@ -86,36 +86,18 @@ public class Menu {
 	}
 
 	public static void deleteClub() {
-		if(premierLeague.isClubListEmpty()) {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
-			return;
-		}
-		premierLeague.displayClubNames();
 		System.out.println("Enter the name of the club");
 		String clubNameDelete = scanner.nextLine();
-		if(!premierLeague.checkForClub(clubNameDelete)) {
-			System.out.println("Club does not exist in the premier league");
-			return;
-		}
 		premierLeague.deleteClub(clubNameDelete);
 	}	
 
 	public static void displayClub() {
-		if(premierLeague.isClubListEmpty()) {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
-			return;
-		}
-		premierLeague.displayClubNames();
 		System.out.println("Enter the name of the club");
 		String clubNameFind = scanner.nextLine();
 		premierLeague.displayStatistics(clubNameFind);
 	}
 
 	public static void displayTable() {
-		if(premierLeague.isClubListEmpty()) {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
-			return;
-		}
 		premierLeague.displayTable();
 	}
 
@@ -124,21 +106,27 @@ public class Menu {
 			System.out.println("Please add atleast two clubs to add a match!!");
 			return;
 		}
-		premierLeague.displayClubNames();
+
 		System.out.println("Enter the home team from the above club list");
 		String teamA = scanner.nextLine();
 		if(!premierLeague.checkForClub(teamA)) {
-			System.out.println(teamA + " does not exist in the premier league");
+			System.out.println("\n" + teamA + " does not exist in the premier league\n");
 			return;
 		}
 		System.out.println("Enter the away team from the above club list");
 		String teamB = scanner.nextLine();
 		if(!premierLeague.checkForClub(teamB)) {
-			System.out.println(teamB + " does not exist in the premier league");
+			System.out.println("\n" + teamB + " does not exist in the premier league\n");
 			return;
 		}
+		
 		SportsClub clubA = premierLeague.getClubFromList(teamA);
 		SportsClub clubB = premierLeague.getClubFromList(teamB);
+		if(clubA.equals(clubB)) {
+			System.out.println("Please select two separate teams");
+			return;
+		}
+		
 		System.out.println("Enter the goals scored by " + teamA);
 		int teamAScore = Integer.parseInt(scanner.nextLine());
 		System.out.println("Enter the goals scored by " + teamB);
