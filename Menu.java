@@ -102,6 +102,10 @@ public class Menu {
 	}
 
 	public static void displayTable() {
+		if(premierLeague.isClubListEmpty()) {
+			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
+			return;
+		}
 		premierLeague.displayTable();
 	}
 
@@ -114,16 +118,15 @@ public class Menu {
 		System.out.println("\nEnter the home team from the above club list");
 		String teamA = scanner.nextLine();
 		if(!premierLeague.checkForClub(teamA)) {
-			System.out.println("\n" + teamA + " does not exist in the premier league\n");
+			System.out.println(teamA + " does not exist in the premier league");
 			return;
 		}
 		System.out.println("Enter the away team from the above club list");
 		String teamB = scanner.nextLine();
 		if(!premierLeague.checkForClub(teamB)) {
-			System.out.println("\n" + teamB + " does not exist in the premier league\n");
+			System.out.println(teamB + " does not exist in the premier league");
 			return;
 		}
-		
 		SportsClub clubA = premierLeague.getClubFromList(teamA);
 		SportsClub clubB = premierLeague.getClubFromList(teamB);
 		if(clubA.equals(clubB)) {

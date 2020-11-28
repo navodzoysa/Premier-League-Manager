@@ -13,22 +13,12 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 
 	@Override
 	public void deleteClub(String clubName) {
-		Boolean clubExists = false;
-		if(!clubList.isEmpty()) {
-			for(SportsClub club : clubList) {
-				if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
-					clubList.remove(club);
-					clubExists = true;
-					System.out.println("Successfully removed club");
-					break;
-				}
+		for(SportsClub club : clubList) {
+			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
+				clubList.remove(club);
+				System.out.println("Successfully removed club");
+				break;
 			}
-			if(!clubExists) {
-				System.out.println(clubName + " does not exist in the premier league!!!");
-			}
-		}
-		else {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
 		}
 	}
 
@@ -140,6 +130,10 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 			System.out.println("All clubs have been loaded successfully\n");
 			return;
 		}
+	}
+
+	public boolean isClubListEmpty() {
+		return clubList.isEmpty();
 	}
 
 	public int clubListLength() {
