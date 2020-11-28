@@ -15,6 +15,14 @@ public class Match {
 		this.matchDate = matchDate;
 	}
 
+	public SportsClub getTeamA() {
+		return teamA;
+	}
+
+	public SportsClub getTeamB() {
+		return teamB;
+	}
+
 	public void setTeamAScore(int teamAScore) {
 		this.teamAScore = teamAScore;
 	}

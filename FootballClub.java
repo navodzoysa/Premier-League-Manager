@@ -1,4 +1,6 @@
-public class FootballClub extends SportsClub implements Comparable<FootballClub> {
+import java.io.Serializable;
+
+public class FootballClub extends SportsClub implements Comparable<FootballClub>, Serializable {
 	private int wins;
 	private int draws;
 	private int defeats;
@@ -9,19 +11,12 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 
 	public FootballClub() {}
 
-	public FootballClub(String clubName, String clubLocation, int wins, int draws, int defeats, int goalsReceived, int goalsScored, int clubPoints, int matchesPlayed) {
+	public FootballClub(String clubName, String clubLocation) {
 		super(clubName, clubLocation);
-		this.wins = wins;
-		this.draws = draws;
-		this.defeats = defeats;
-		this.goalsReceived = goalsReceived;
-		this.goalsScored = goalsScored;
-		this.clubPoints = clubPoints;
-		this.matchesPlayed = matchesPlayed;
 	}
 
 	public void setWins(int wins) {
-		this.wins = wins;
+		this.wins += wins;
 	}
 
 	public int getWins() {
@@ -29,7 +24,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setDraws(int draws) {
-		this.draws = draws;
+		this.draws += draws;
 	}
 
 	public int getDraws() {
@@ -37,7 +32,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setDefeats(int defeats) {
-		this.defeats = defeats;
+		this.defeats += defeats;
 	}
 
 	public int getDefeats() {
@@ -45,7 +40,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setGoalsReceived(int goalsReceived) {
-		this.goalsReceived = goalsReceived;
+		this.goalsReceived += goalsReceived;
 	}
 
 	public int getGoalsReceived() {
@@ -53,7 +48,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setGoalsScored(int goalsScored) {
-		this.goalsScored = goalsScored;
+		this.goalsScored += goalsScored;
 	}
 
 	public int getGoalsScored() {
@@ -61,7 +56,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setClubPoints(int clubPoints) {
-		this.clubPoints = clubPoints;
+		this.clubPoints += clubPoints;
 	}
 
 	public int getClubPoints() {
@@ -69,7 +64,7 @@ public class FootballClub extends SportsClub implements Comparable<FootballClub>
 	}
 
 	public void setMatchesPlayed(int matchesPlayed) {
-		this.matchesPlayed = matchesPlayed;
+		this.matchesPlayed += matchesPlayed;
 	}
 
 	public int getMatchesPlayed() {

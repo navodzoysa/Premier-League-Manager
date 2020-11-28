@@ -1,23 +1,14 @@
 import java.util.*;
+import java.io.*;
 
-public class PremierLeagueManager implements LeagueManager {
+public class PremierLeagueManager implements Serializable, LeagueManager {
 	private List<SportsClub> clubList = new ArrayList<>();
+	private List<Match> matchList = new ArrayList<>();
 
 	@Override
 	public void addClub(SportsClub newClub) {
-		Boolean clubExists = false;
-		for(SportsClub club : clubList) {
-			if(club.equals(newClub)) {
-				System.out.println("Club already exists!!!");
-				clubExists = true;
-				break;
-			}
-		}
-		if(!clubExists) {
-			clubList.add(newClub);
-			System.out.println("Successfully added club");
-		
-		}
+		clubList.add(newClub);
+		System.out.println("Successfully added club");
 	}
 
 	@Override
@@ -43,22 +34,14 @@ public class PremierLeagueManager implements LeagueManager {
 
 	@Override
 	public void displayStatistics(String clubName) {
-		Boolean clubExists = false;
-		if(!clubList.isEmpty()) {
-			for(SportsClub club : clubList) {
-				if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
-					System.out.println(club);
-					clubExists = true;
-					break;
-				}	
-			}
-			if(!clubExists) {
-				System.out.println(clubName + " does not exist in the premier league!!!");
+		System.out.print("-------------------------------------");
+		for(SportsClub club : clubList) {
+			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
+				System.out.println(club);
+				break;
 			}
 		}
-		else {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
-		}
+		System.out.println("-------------------------------------");
 	}
 
 	@Override
@@ -83,22 +66,81 @@ public class PremierLeagueManager implements LeagueManager {
 			}
 			System.out.println("-------------------------------------------------------------------------");
 		}
-		else {
-			System.out.println("No clubs found in the premier league!!! Please add atleast one club to continue");
-		}
 	}
 
 	@Override
 	public void addMatch(Match match) {
+		FootballClub teamA = ((FootballClub)match.getTeamA());
+		FootballClub teamB = ((FootballClub)match.getTeamB());
+
+		teamA.setGoalsScored(match.getTeamAScore());
+		teamB.setGoalsScored(match.getTeamBScore());
+		teamA.setGoalsReceived(match.getTeamBScore());
+		teamB.setGoalsReceived(match.getTeamAScore());
+
+		if(match.getTeamAScore() > match.getTeamBScore()) {
+			teamA.setWins(1);
+			teamB.setDefeats(1);
+			teamA.setClubPoints(3);
+		}
+		else if(match.getTeamAScore() < match.getTeamBScore()) {
+			teamB.setWins(1);
+			teamA.setDefeats(1);
+			teamB.setClubPoints(3);
+		}
+		else if (match.getTeamAScore() == match.getTeamBScore()) {
+			teamA.setDraws(1);
+			teamB.setDraws(1);
+			teamA.setClubPoints(1);
+			teamB.setClubPoints(1);
+		}
+
+		matchList.add(match);
 		System.out.println(match);
 		System.out.println("Successfully added match");
 	}
 
 	@Override
-	public void saveToFile() {}
+	public void saveToFile(String fileName) throws IOException {
+		FileOutputStream fileOutput = new FileOutputStream(fileName);
+		ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+		
+		try{
+			for(SportsClub club : clubList) {
+				objectOutput.writeObject(club);
+			}
+			System.out.println("All clubs have been saved successfully");
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("File Not found");
+		}
+		finally {
+			objectOutput.close();
+			fileOutput.close();
+		}
+		
+	}
 
 	@Override
-	public void loadFromFile() {}
+	public void loadFromFile(String fileName) throws IOException, ClassNotFoundException {
+		
+		try{
+			File file = new File(fileName);
+			file.createNewFile();
+			FileInputStream fileInput = new FileInputStream(fileName);
+			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+			for(;;) {
+				clubList.add((SportsClub) objectInput.readObject());
+			}
+		}
+		catch(FileNotFoundException e) {
+			return;
+		}
+		catch(EOFException e) {
+			System.out.println("All clubs have been loaded successfully\n");
+			return;
+		}
+	}
 
 	public int clubListLength() {
 		return clubList.size();
@@ -122,5 +164,14 @@ public class PremierLeagueManager implements LeagueManager {
 			}
 		}
 		return null;
+	}
+
+	public void displayClubNames() {
+		System.out.println("\nList of clubs in the premier league");
+		System.out.println("-------------------------------------");
+		for(SportsClub club : clubList) {
+			System.out.println(club.getClubName());
+		}
+		System.out.println("-------------------------------------\n");
 	}
 }
