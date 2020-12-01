@@ -16,7 +16,6 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		for(SportsClub club : clubList) {
 			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
 				clubList.remove(club);
-				System.out.println("Successfully removed club");
 				break;
 			}
 		}
@@ -24,7 +23,7 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 
 	@Override
 	public void displayStatistics(String clubName) {
-		System.out.print("-------------------------------------");
+		System.out.print("\n-------------------------------------");
 		for(SportsClub club : clubList) {
 			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
 				System.out.println(club);
@@ -73,21 +72,28 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 			teamA.setWins(1);
 			teamB.setDefeats(1);
 			teamA.setClubPoints(3);
+			System.out.println("\n" + teamA.getClubName() + " won against " + teamB.getClubName());
 		}
 		else if(match.getTeamAScore() < match.getTeamBScore()) {
 			teamB.setWins(1);
 			teamA.setDefeats(1);
 			teamB.setClubPoints(3);
+			System.out.println("\n" + teamB.getClubName() + " won against " + teamA.getClubName());
 		}
 		else if (match.getTeamAScore() == match.getTeamBScore()) {
 			teamA.setDraws(1);
 			teamB.setDraws(1);
 			teamA.setClubPoints(1);
 			teamB.setClubPoints(1);
+			System.out.println("\n" + teamA.getClubName() + " and " + teamB.getClubName() + " ended in a tie");
 		}
 
+		teamA.setMatchesPlayed(1);
+		teamB.setMatchesPlayed(1);
 		matchList.add(match);
+		System.out.println("-------------------------------------");
 		System.out.println(match);
+		System.out.println("-------------------------------------");
 		System.out.println("Successfully added match");
 	}
 
@@ -167,6 +173,6 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		for(SportsClub club : clubList) {
 			System.out.println(club.getClubName());
 		}
-		System.out.println("-------------------------------------\n");
+		System.out.println("-------------------------------------");
 	}
 }
