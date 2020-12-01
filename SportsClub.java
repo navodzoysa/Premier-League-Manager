@@ -4,6 +4,11 @@ public abstract class SportsClub implements Serializable {
 	private String clubName;
 	private String clubLocation;
 	private String clubStatistics;
+	private int wins;
+	private int draws;
+	private int defeats;
+	private int clubPoints;
+	private int matchesPlayed;
 
 	public SportsClub() {}
 	
@@ -36,10 +41,55 @@ public abstract class SportsClub implements Serializable {
 		return clubStatistics;
 	}
 
+	public void setWins(int wins) {
+		this.wins += wins;
+	}
+
+	public int getWins() {
+		return wins;
+	}
+
+	public void setDraws(int draws) {
+		this.draws += draws;
+	}
+
+	public int getDraws() {
+		return draws;
+	}
+
+	public void setDefeats(int defeats) {
+		this.defeats += defeats;
+	}
+
+	public int getDefeats() {
+		return defeats;
+	}
+
+	public void setClubPoints(int clubPoints) {
+		this.clubPoints += clubPoints;
+	}
+
+	public int getClubPoints() {
+		return clubPoints;
+	}
+
+	public void setMatchesPlayed(int matchesPlayed) {
+		this.matchesPlayed += matchesPlayed;
+	}
+
+	public int getMatchesPlayed() {
+		return matchesPlayed;
+	}
+
 	@Override
 	public String toString() {
 		return "\nClub name: " + clubName +
-			"\nClub location: " + clubLocation;
+			"\nClub location: " + clubLocation +
+			"\nWins: " + wins +
+			"\nDraws: " + draws + 
+			"\nDefeats: " + defeats +
+			"\nClub Points: " + clubPoints +
+			"\nMatches Played: " + matchesPlayed;
 	}
 
 	@Override
