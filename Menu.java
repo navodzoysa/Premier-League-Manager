@@ -147,18 +147,87 @@ public class Menu {
 		int teamAScore = scanner.nextInt();
 		System.out.println("Enter the goals scored by " + teamB);
 		int teamBScore = scanner.nextInt();
-		System.out.println("Enter the day(DD)");
-		int day = scanner.nextInt();
-		System.out.println("Enter the month(MM)");
-		int month = scanner.nextInt();
-		System.out.println("Enter the year(YYYY)");
-		int year = scanner.nextInt();
-		System.out.println("Enter the hour of the match(HH)");
-		int hour = scanner.nextInt();
-		System.out.println("Enter the minutes of the match(MM)");
-		int minute = scanner.nextInt();
-		DateTime matchDate = new DateTime(day, month, year, hour, minute);
-		Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
-		premierLeague.addMatch(match);
+		while(true) {
+			System.out.println("Enter the day(DD)");
+			int day = scanner.nextInt();
+			if(day <= 0 || day > 31) {
+				System.out.println("Invalid day! Please enter a valid day");
+				continue;
+			}
+			System.out.println("Enter the month(MM)");
+			int month = scanner.nextInt();
+			if(month <= 0 || month > 12) {
+				System.out.println("Invalid month! Please enter a valid month");
+				continue;
+			}
+			System.out.println("Enter the year(YYYY)");
+			int year = scanner.nextInt();
+			if(year < 1990) {
+				System.out.println("Invalid year! Please enter a valid year");
+				continue;
+			}
+			System.out.println("Enter the hour of the match in 24 hour format(HH)");
+			int hour = scanner.nextInt();
+			if(hour < 0 || hour > 23) {
+				System.out.println("Invalid hour! Please enter a valid hour");
+				continue;
+			}
+			System.out.println("Enter the minutes of the match(MM)");
+			int minute = scanner.nextInt();
+			if(minute < 0 || minute > 59) {
+				System.out.println("Invalid minute! Please enter a valid minute");
+				continue;
+			}
+			if(validateDate(day, month, year)) {
+				DateTime matchDate = new DateTime(day, month, year, hour, minute);
+				Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
+				premierLeague.addMatch(match);
+			}
+			break;
+		}
+	}
+
+	public static boolean validateDate(int day ,int month ,int year) {
+		Boolean leapYear = false;
+		Boolean isValidDate = false;
+		if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+			leapYear = true;
+		}
+		if(leapYear && month == 2) {
+			if(day > 0 && day <= 29) {
+				return isValidDate = true;
+			}
+			else{
+				System.out.println("Invalid day! Please enter a valid day.");
+				return isValidDate = false;
+			}
+		}
+		else if(!leapYear && month == 2) {
+			if(day > 0 && day <= 28) {
+				return isValidDate = true;
+			}
+			else{
+				System.out.println("Invalid day! Please enter a valid day.");
+				return isValidDate = false;
+			}
+		}
+		else if(month == 4 || month == 6 || month == 9 || month == 11) {
+			if(day > 0 && day <= 30) {
+				return isValidDate = true;
+			}
+			else{
+				System.out.println("Invalid day! Please enter a valid day.");
+				return isValidDate = false;
+			}
+		}
+		else{
+			if(day > 0 && day <= 31) {
+				return isValidDate = true;
+			}
+			else{
+				System.out.println("Invalid day! Please enter a valid day.");
+				return isValidDate = false;
+			}
+		}
 	}
 }
