@@ -2,13 +2,14 @@ package views;
 
 import controllers.PremierLeagueManager;
 import models.*;
-import java.io.IOException;
+import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 	private static PremierLeagueManager premierLeague = new PremierLeagueManager();
 	private static Scanner scanner = new Scanner(System.in);
+	private static Process process = null;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		premierLeague.loadFromFile();
@@ -50,10 +51,25 @@ public class Menu {
 					addMatch();
 					break;
 				case 6:
-					System.out.println("GUI");
+					ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "sbt run");
+					process = processBuilder.start();
+//					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//					String line = "";
+//					while ((line = reader.readLine()) != null) {
+//						System.out.println(line);
+//					}
+//					reader.close();
 					break;
 				case 7:
 					premierLeague.saveToFile();
+					if(process != null) {
+						BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+						writer.write("Ctrl+C");
+						writer.newLine();
+						writer.flush();
+						writer.close();
+						process.destroyForcibly();
+					}
 					break menuLoop;
 				default:
 					System.out.println("Invalid Input!!! Please select a valid number from the menu");
