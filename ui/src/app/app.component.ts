@@ -8,13 +8,13 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string | undefined;
+  // title: string | undefined;
   postRequestResponse: string | undefined;
 
   constructor(private appService: AppService) {
-    this.appService.getWelcomeMessage().subscribe((data: any) => {
-      this.title = data.content;
-    });
+    // this.appService.getWelcomeMessage().subscribe((data: any) => {
+    //   this.title = data.content;
+    // });
   }
 
   /**

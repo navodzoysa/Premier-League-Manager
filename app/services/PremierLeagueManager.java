@@ -1,4 +1,4 @@
-package controllers;
+package services;
 
 import models.*;
 import java.util.*;
@@ -8,10 +8,24 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	private static List<SportsClub> clubList = new ArrayList<>();
 	private static List<Match> matchList = new ArrayList<>();
 	private Random random = new Random();
+	private static PremierLeagueManager instance;
+
+	public static PremierLeagueManager getInstance() throws IOException, ClassNotFoundException {
+		if(instance == null) {
+			instance = new PremierLeagueManager();
+		}
+		instance.loadFromFile();
+		return instance;
+	}
 
 	@Override
 	public void addClub(SportsClub newClub) {
 		clubList.add(newClub);
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Successfully added club");
 	}
 
@@ -22,6 +36,11 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 				clubList.remove(club);
 				break;
 			}
+		}
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -95,6 +114,11 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		teamA.setMatchesPlayed(1);
 		teamB.setMatchesPlayed(1);
 		matchList.add(match);
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println("-------------------------------------");
 		System.out.println(match);
 		System.out.println("-------------------------------------");

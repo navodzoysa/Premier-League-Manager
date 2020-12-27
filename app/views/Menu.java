@@ -1,6 +1,6 @@
 package views;
 
-import controllers.PremierLeagueManager;
+import services.PremierLeagueManager;
 import models.*;
 import java.io.*;
 import java.util.InputMismatchException;

@@ -5,6 +5,9 @@
 # Serve index page from public directory
 GET     /                           controllers.FrontendController.index()
 
+# APIs in SportsClubController
+GET     /sportsclub                 controllers.SportsClubController.listSportsClubs()
+
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 GET     /api/summary                controllers.HomeController.appSummary
 
