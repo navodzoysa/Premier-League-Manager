@@ -22,7 +22,7 @@ export class AppComponent {
    */
   public postData(): void {
     this.appService.sendData().subscribe((data: any) => {
-      this.postRequestResponse = data.content;
+      this.postRequestResponse = JSON.stringify(data);
     });
   }
 }

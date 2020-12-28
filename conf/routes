@@ -6,7 +6,12 @@
 GET     /                           controllers.FrontendController.index()
 
 # APIs in SportsClubController
-GET     /sportsclub                 controllers.SportsClubController.listSportsClubs()
+GET     /api/sportsclub             controllers.SportsClubController.listSportsClubs()
+
+# APIs in MatchController
+GET     /api/match                  controllers.MatchController.listMatches()
++nocsrf
+POST    /api/match                  controllers.MatchController.create()
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 GET     /api/summary                controllers.HomeController.appSummary

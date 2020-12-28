@@ -46,6 +46,11 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 
 	@Override
 	public void displayStatistics(String clubName) {
+		try {
+			loadFromFile();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		System.out.print("\n-------------------------------------");
 		for(SportsClub club : clubList) {
 			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
@@ -59,6 +64,11 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	@Override
 	public void displayTable() {
 		if(!clubList.isEmpty()){
+			try {
+				loadFromFile();
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 			sortPoints();
 			System.out.println("--------------------------------------------------------------------------------");
 			System.out.printf("%-20s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s", "Club Name", "MP", "W", "L", "D", "GS", "GR", "GD", "P");

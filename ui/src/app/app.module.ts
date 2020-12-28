@@ -25,11 +25,11 @@ const routes: Routes = [
     component: RouteExampleComponent,
     data: { technology: 'Angular' }
   },
-  {
-    path: '**',
-    redirectTo: '/play',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/play',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

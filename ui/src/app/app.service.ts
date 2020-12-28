@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/index';
 @Injectable()
 export class AppService {
   private serviceUrl = '/api/summary';
-  private dataPostTestUrl = '/api/postTest';
+  private dataPostTestUrl = '/api/match';
 
   constructor(private http: HttpClient) {
   }

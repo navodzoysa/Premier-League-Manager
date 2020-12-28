@@ -53,12 +53,15 @@ public class Menu {
 				case 6:
 					ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "sbt run");
 					process = processBuilder.start();
-//					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//					String line = "";
-//					while ((line = reader.readLine()) != null) {
-//						System.out.println(line);
-//					}
-//					reader.close();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					String line = "";
+					while ((line = reader.readLine()) != null) {
+						if(reader.readLine().isEmpty()) {
+							break;
+						}
+						System.out.println(line);
+					}
+					reader.close();
 					break;
 				case 7:
 					premierLeague.saveToFile();
