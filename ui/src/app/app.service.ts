@@ -11,6 +11,9 @@ import { Observable } from 'rxjs/index';
  */
 @Injectable()
 export class AppService {
+  private clubsUrl = '/api/sportsclubs';
+  private matchesUrl = '/api/matches';
+  private matchUrl = '/api/match';
   private serviceUrl = '/api/summary';
   private dataPostTestUrl = '/api/match';
 
@@ -24,6 +27,11 @@ export class AppService {
     return this.http.get(this.serviceUrl).pipe(
       map(response => response)
     );
+  }
+
+  // HTTP request to get all clubs from backend
+  public getClubs() {
+    return this.http.get(this.clubsUrl);
   }
 
   /**

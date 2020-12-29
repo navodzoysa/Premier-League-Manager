@@ -4,38 +4,42 @@ import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { RouteExampleComponent } from './route-example/route-example.component';
+// import { RouteExampleComponent } from './route-example/route-example.component';
 
 import { AppService } from './app.service';
 import { AppHttpInterceptorService } from './http-interceptor.service';
+import {MatTableModule} from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClubTableComponent } from './components/club-table/club-table.component';
 
-const routes: Routes = [
-  {
-    path: 'java',
-    component: RouteExampleComponent,
-    data: { technology: 'Java' }
-  },
-  {
-    path: 'play',
-    component: RouteExampleComponent,
-    data: { technology: 'Play' }
-  },
-  {
-    path: 'angular',
-    component: RouteExampleComponent,
-    data: { technology: 'Angular' }
-  },
-  // {
-  //   path: '**',
-  //   redirectTo: '/play',
-  //   pathMatch: 'full'
-  // }
-];
+// const routes: Routes = [
+//   {
+//     path: 'java',
+//     component: RouteExampleComponent,
+//     data: { technology: 'Java' }
+//   },
+//   {
+//     path: 'play',
+//     component: RouteExampleComponent,
+//     data: { technology: 'Play' }
+//   },
+//   {
+//     path: 'angular',
+//     component: RouteExampleComponent,
+//     data: { technology: 'Angular' }
+//   },
+//   {
+//     path: '**',
+//     redirectTo: '/play',
+//     pathMatch: 'full'
+//   }
+// ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    RouteExampleComponent
+    ClubTableComponent,
+    // RouteExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ const routes: Routes = [
       cookieName: 'Csrf-Token',
       headerName: 'Csrf-Token',
     }),
-    RouterModule.forRoot(routes)
+    MatTableModule,
+    BrowserAnimationsModule,
+    // RouterModule.forRoot(routes)
   ],
   providers: [
     AppService,

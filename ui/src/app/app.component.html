@@ -1,26 +1,23 @@
 <div style="text-align:center;">
   <h1>Welcome to the Premier League Manager</h1>
-  <nav>
-    <a [routerLink]="['java']">
-      <img width="300" height="300" src="../assets/java.webp">
-    </a>
-    <a [routerLink]="['play']">
-      <img width="300" height="300" src="../assets/play.svg">
-    </a>
-    <a [routerLink]="['angular']">
-      <img width="300" height="300" src="../assets/angular.svg">
-    </a>
-  </nav>
-  <router-outlet></router-outlet>
-
+<!--  <nav>-->
+<!--    <a [routerLink]="['java']">-->
+<!--      <img width="300" height="300" src="../assets/java.webp">-->
+<!--    </a>-->
+<!--    <a [routerLink]="['play']">-->
+<!--      <img width="300" height="300" src="../assets/play.svg">-->
+<!--    </a>-->
+<!--    <a [routerLink]="['angular']">-->
+<!--      <img width="300" height="300" src="../assets/angular.svg">-->
+<!--    </a>-->
+<!--  </nav>-->
+<!--  <router-outlet></router-outlet>-->
+  <app-club-table></app-club-table>
   <div class="post-request-test">
     <h3>Sample Post Request</h3>
     <button (click)="postData()">send a post req</button>
     <h5>Response: {{postRequestResponse}}</h5>
   </div>
-  <button>Sort clubs based on points</button>
-  <button>Sort clubs based on goals</button>
-  <button>Sort clubs based on wins</button>
   <button>Add a random match</button>
   <button>Sort matches based on date</button>
   <input>

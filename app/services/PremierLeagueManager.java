@@ -21,6 +21,7 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	@Override
 	public void addClub(SportsClub newClub) {
 		clubList.add(newClub);
+		sortPoints();
 		try {
 			saveToFile();
 		} catch (IOException e) {
@@ -37,6 +38,7 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 				break;
 			}
 		}
+		sortPoints();
 		try {
 			saveToFile();
 		} catch (IOException e) {
@@ -124,6 +126,7 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		teamA.setMatchesPlayed(1);
 		teamB.setMatchesPlayed(1);
 		matchList.add(match);
+		sortPoints();
 		try {
 			saveToFile();
 		} catch (IOException e) {

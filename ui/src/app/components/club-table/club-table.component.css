@@ -1,0 +1,21 @@
+table {
+  width: 50%;
+}
+th, td {
+  text-align: left;
+}
+/*th, td {*/
+/*  overflow: hidden;*/
+/*  width: 200px;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
+/*.mat-column-position {*/
+/*  flex: 0 0 10%;*/
+/*}.mat-column-name {*/
+/*  flex: 0 0 100%;*/
+/*}.mat-column-weight {*/
+/*  flex: 0 0 10%;*/
+/*}.mat-column-symbol {*/
+/*  flex: 0 0 10%;*/
+/*}*/

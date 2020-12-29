@@ -1,0 +1,67 @@
+<div class="container">
+  <table mat-table [dataSource]="clubData" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="clubName">
+      <th mat-header-cell *matHeaderCellDef> Club Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.clubName}} </td>
+    </ng-container>
+
+    <!-- Matches Played Column -->
+    <ng-container matColumnDef="matchesPlayed">
+      <th mat-header-cell *matHeaderCellDef> MP </th>
+      <td mat-cell *matCellDef="let element"> {{element.matchesPlayed}} </td>
+    </ng-container>
+
+    <!-- Wins Column -->
+    <ng-container matColumnDef="wins">
+      <th mat-header-cell *matHeaderCellDef> W </th>
+      <td mat-cell *matCellDef="let element"> {{element.wins}} </td>
+    </ng-container>
+
+    <!-- Losses Column -->
+    <ng-container matColumnDef="losses">
+      <th mat-header-cell *matHeaderCellDef> L </th>
+      <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
+    </ng-container>
+
+    <!-- Draws Column -->
+    <ng-container matColumnDef="draws">
+      <th mat-header-cell *matHeaderCellDef> D </th>
+      <td mat-cell *matCellDef="let element"> {{element.draws}} </td>
+    </ng-container>
+
+    <!-- Goals Scored Column -->
+    <ng-container matColumnDef="goalsScored">
+      <th mat-header-cell *matHeaderCellDef> GS </th>
+      <td mat-cell *matCellDef="let element"> {{element.goalsScored}} </td>
+    </ng-container>
+
+    <!-- Goals Received Column -->
+    <ng-container matColumnDef="goalsReceived">
+      <th mat-header-cell *matHeaderCellDef> GR </th>
+      <td mat-cell *matCellDef="let element"> {{element.goalsReceived}} </td>
+    </ng-container>
+
+    <!-- Goal Difference Column -->
+    <ng-container matColumnDef="goalDifference">
+      <th mat-header-cell *matHeaderCellDef> GD </th>
+      <td mat-cell *matCellDef="let element"> {{element.goalDifference}} </td>
+    </ng-container>
+
+    <!-- Points Column -->
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef> P </th>
+      <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <br>
+  <div>
+    <button>Sort clubs based on points</button>
+    <button>Sort clubs based on goals</button>
+    <button>Sort clubs based on wins</button>
+  </div>
+</div>
+

@@ -18,4 +18,28 @@ public class SportsClubController extends Controller {
         JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
         return ok(ApplicationUtil.createResponse(jsonData, true));
     }
+
+    public Result sortClubsByPoints() throws IOException, ClassNotFoundException {
+        PremierLeagueManager.getInstance().sortPoints();
+        List<SportsClub> result = PremierLeagueManager.getInstance().getClubList();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
+        return ok(ApplicationUtil.createResponse(jsonData, true));
+    }
+
+    public Result sortClubsByGoals() throws IOException, ClassNotFoundException {
+        PremierLeagueManager.getInstance().sortGoals();
+        List<SportsClub> result = PremierLeagueManager.getInstance().getClubList();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
+        return ok(ApplicationUtil.createResponse(jsonData, true));
+    }
+
+    public Result sortClubsByWins() throws IOException, ClassNotFoundException {
+        PremierLeagueManager.getInstance().sortWins();
+        List<SportsClub> result = PremierLeagueManager.getInstance().getClubList();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
+        return ok(ApplicationUtil.createResponse(jsonData, true));
+    }
 }
