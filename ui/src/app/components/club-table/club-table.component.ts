@@ -12,7 +12,7 @@ export class ClubTableComponent implements OnInit {
   displayedColumns: string[] = ['clubName', 'matchesPlayed', 'wins', 'losses', 'draws',
                                 'goalsScored', 'goalsReceived', 'goalDifference', 'points'];
   clubData: SportsClub[] = [];
-  @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatTable) table: MatTable<SportsClub> | undefined;
 
   constructor(private appService: AppService) {}
 
@@ -50,9 +50,10 @@ export class ClubTableComponent implements OnInit {
         goalDifference: club.goalDifference,
         points: club.clubPoints,
       }));
-      this.table.renderRows();
       console.log(this.clubData);
     });
+    // @ts-ignore
+    this.table.renderRows();
   }
 
   public sortClubsGoals() :void {
@@ -68,9 +69,10 @@ export class ClubTableComponent implements OnInit {
         goalDifference: club.goalDifference,
         points: club.clubPoints,
       }));
-      this.table.renderRows();
       console.log(this.clubData);
     });
+    // @ts-ignore
+    this.table.renderRows();
   }
 
   public sortClubsWins() :void {
@@ -86,8 +88,9 @@ export class ClubTableComponent implements OnInit {
         goalDifference: club.goalDifference,
         points: club.clubPoints,
       }));
-      this.table.renderRows();
       console.log(this.clubData);
     });
+    // @ts-ignore
+    this.table.renderRows();
   }
 }
