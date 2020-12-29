@@ -12,6 +12,9 @@ import { Observable } from 'rxjs/index';
 @Injectable()
 export class AppService {
   private clubsUrl = '/api/sportsclubs';
+  private sortPointsUrl = '/api/sortpoints';
+  private sortGoalssUrl = '/api/sortgoals';
+  private sortWinsUrl = '/api/sortwins';
   private matchesUrl = '/api/matches';
   private matchUrl = '/api/match';
   private serviceUrl = '/api/summary';
@@ -32,6 +35,18 @@ export class AppService {
   // HTTP request to get all clubs from backend
   public getClubs() {
     return this.http.get(this.clubsUrl);
+  }
+
+  public sortPoints() {
+    return this.http.get(this.sortPointsUrl);
+  }
+
+  public sortGoals() {
+    return this.http.get(this.sortGoalssUrl);
+  }
+
+  public sortWins() {
+    return this.http.get(this.sortWinsUrl);
   }
 
   /**

@@ -6,13 +6,13 @@
 GET     /                           controllers.FrontendController.index()
 
 # APIs in SportsClubController
-GET     /api/sportsclubs             controllers.SportsClubController.listSportsClubs()
-GET     /api/sortpoints                controllers.SportsClubController.sortClubsByPoints()
-GET     /api/sortgoals               controllers.SportsClubController.sortClubsByGoals()
-GET     /api/sortwins                controllers.SportsClubController.sortClubsByWins()
+GET     /api/sportsclubs            controllers.SportsClubController.listSportsClubs()
+GET     /api/sortpoints             controllers.SportsClubController.sortClubsByPoints()
+GET     /api/sortgoals              controllers.SportsClubController.sortClubsByGoals()
+GET     /api/sortwins               controllers.SportsClubController.sortClubsByWins()
 
 # APIs in MatchController
-GET     /api/matches                  controllers.MatchController.listMatches()
+GET     /api/matches                controllers.MatchController.listMatches()
 +nocsrf
 POST    /api/match                  controllers.MatchController.create()
 

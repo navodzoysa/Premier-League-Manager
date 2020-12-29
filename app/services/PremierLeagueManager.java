@@ -22,11 +22,6 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	public void addClub(SportsClub newClub) {
 		clubList.add(newClub);
 		sortPoints();
-		try {
-			saveToFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		System.out.println("Successfully added club");
 	}
 
@@ -39,11 +34,6 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 			}
 		}
 		sortPoints();
-		try {
-			saveToFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -127,11 +117,6 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		teamB.setMatchesPlayed(1);
 		matchList.add(match);
 		sortPoints();
-		try {
-			saveToFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		System.out.println("-------------------------------------");
 		System.out.println(match);
 		System.out.println("-------------------------------------");
@@ -228,14 +213,29 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 
 	public void sortPoints() {
 		Collections.sort(clubList, Collections.reverseOrder());
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void sortGoals() {
 		Collections.sort(clubList, new GoalComparator().reversed());
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void sortWins() {
 		Collections.sort(clubList, new WinComparator().reversed());
+		try {
+			saveToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Match addRandomMatch() {
