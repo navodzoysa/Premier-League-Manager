@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Match;
+import models.SportsClub;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -22,6 +23,15 @@ public class MatchController extends Controller {
 
     public Result listMatches() throws IOException, ClassNotFoundException {
         List<Match> result = PremierLeagueManager.getInstance().getMatchList();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
+        return ok(ApplicationUtil.createResponse(jsonData, true));
+    }
+
+    public Result sortMatches() throws IOException, ClassNotFoundException {
+        PremierLeagueManager premierLeagueManager = PremierLeagueManager.getInstance();
+        premierLeagueManager.sortMatchDates();
+        List<Match> result = premierLeagueManager.getMatchList();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonData = mapper.convertValue(result, JsonNode.class);
         return ok(ApplicationUtil.createResponse(jsonData, true));

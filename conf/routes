@@ -13,6 +13,7 @@ GET     /api/sortwins               controllers.SportsClubController.sortClubsBy
 
 # APIs in MatchController
 GET     /api/matches                controllers.MatchController.listMatches()
+GET     /api/sortmatches            controllers.MatchController.sortMatches()
 +nocsrf
 POST    /api/match                  controllers.MatchController.create()
 

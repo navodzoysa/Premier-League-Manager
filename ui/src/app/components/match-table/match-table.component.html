@@ -1,40 +1,40 @@
 <div>
   <h1>Match Table</h1>
-  <table mat-table [dataSource]="matchesData" class="mat-elevation-z8">
-    <!-- Name Column -->
+  <table #matchTable mat-table [dataSource]="matchesData" class="mat-elevation-z8">
+    <!-- Team A Column -->
     <ng-container matColumnDef="teamA">
       <th mat-header-cell *matHeaderCellDef> Team A </th>
       <td mat-cell *matCellDef="let element"> {{element.teamA}} </td>
     </ng-container>
 
-    <!-- Matches Played Column -->
+    <!-- Team A Score Column -->
     <ng-container matColumnDef="teamAScore">
       <th mat-header-cell *matHeaderCellDef> Team A Score </th>
       <td mat-cell *matCellDef="let element"> {{element.teamAScore}} </td>
     </ng-container>
 
-    <!-- Wins Column -->
+    <!-- Team B Score Column -->
     <ng-container matColumnDef="teamBScore">
       <th mat-header-cell *matHeaderCellDef> Team B Score </th>
       <td mat-cell *matCellDef="let element"> {{element.teamBScore}} </td>
     </ng-container>
 
-    <!-- Losses Column -->
+    <!-- Team B Column -->
     <ng-container matColumnDef="teamB">
       <th mat-header-cell *matHeaderCellDef> Team B </th>
       <td mat-cell *matCellDef="let element"> {{element.teamB}} </td>
     </ng-container>
 
-    <!-- Draws Column -->
+    <!-- Date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
       <td mat-cell *matCellDef="let element"> {{element.date}} </td>
     </ng-container>
 
-    <!-- Goals Scored Column -->
+    <!-- Random Match Column -->
     <ng-container matColumnDef="random">
       <th mat-header-cell *matHeaderCellDef> Random </th>
-      <td mat-cell *matCellDef="let element"> {{element.random}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.randomMatch}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -42,10 +42,11 @@
   </table>
   <br>
   <div>
-    <button>Add a random match</button>
-    <button>Sort matches based on date</button>
+    <button (click)="addRandomMatch()">Add a random match</button>
+    <button (click)="sortMatchDates()">Sort matches based on date</button>
     <input>
     <button>Search match by date</button>
     <button>Reset</button>
   </div>
+  <h2>{{ addMatchResponse }}</h2>
 </div>

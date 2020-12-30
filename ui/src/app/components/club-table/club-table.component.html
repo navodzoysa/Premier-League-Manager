@@ -1,6 +1,6 @@
 <div>
   <h1>Club Table</h1>
-  <table mat-table [dataSource]="clubData" class="mat-elevation-z8">
+  <table #clubTable mat-table [dataSource]="clubData" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="clubName">
       <th mat-header-cell *matHeaderCellDef> Club Name </th>

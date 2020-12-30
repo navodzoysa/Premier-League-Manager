@@ -13,9 +13,10 @@ import { Observable } from 'rxjs/index';
 export class AppService {
   private clubsUrl = '/api/sportsclubs';
   private sortPointsUrl = '/api/sortpoints';
-  private sortGoalssUrl = '/api/sortgoals';
+  private sortGoalsUrl = '/api/sortgoals';
   private sortWinsUrl = '/api/sortwins';
   private matchesUrl = '/api/matches';
+  private sortMatchesUrl = '/api/sortmatches';
   private matchUrl = '/api/match';
   private serviceUrl = '/api/summary';
   private dataPostTestUrl = '/api/match';
@@ -42,7 +43,7 @@ export class AppService {
   }
 
   public sortGoals() {
-    return this.http.get(this.sortGoalssUrl);
+    return this.http.get(this.sortGoalsUrl);
   }
 
   public sortWins() {
@@ -52,6 +53,15 @@ export class AppService {
   public getMatches() {
     return this.http.get(this.matchesUrl);
   }
+
+  public sortMatches() {
+    return this.http.get(this.sortMatchesUrl);
+  }
+
+  public postRandomMatch(): Observable<any> {
+    return this.http.post(this.matchUrl, {});
+  }
+
   /**
    * Makes a http post request to send some data to backend & get response.
    */
