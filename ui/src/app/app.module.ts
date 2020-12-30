@@ -11,6 +11,7 @@ import { AppHttpInterceptorService } from './http-interceptor.service';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClubTableComponent } from './components/club-table/club-table.component';
+import { MatchTableComponent } from './components/match-table/match-table.component';
 
 // const routes: Routes = [
 //   {
@@ -39,6 +40,7 @@ import { ClubTableComponent } from './components/club-table/club-table.component
   declarations: [
     AppComponent,
     ClubTableComponent,
+    MatchTableComponent,
     // RouteExampleComponent
   ],
   imports: [

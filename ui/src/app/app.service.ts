@@ -49,6 +49,9 @@ export class AppService {
     return this.http.get(this.sortWinsUrl);
   }
 
+  public getMatches() {
+    return this.http.get(this.matchesUrl);
+  }
   /**
    * Makes a http post request to send some data to backend & get response.
    */
