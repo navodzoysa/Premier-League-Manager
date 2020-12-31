@@ -42,11 +42,14 @@
   </table>
   <br>
   <div>
-    <button (click)="addRandomMatch()">Add a random match</button>
-    <button (click)="sortMatchDates()">Sort matches based on date</button>
-    <input>
-    <button>Search match by date</button>
-    <button>Reset</button>
+    <button mat-raised-button color="primary" (click)="addRandomMatch()">Add a random match</button>
+    <button  mat-raised-button color="primary" (click)="sortMatchDates()">Sort matches based on date</button>
+    <mat-form-field>
+    <mat-label>Search date(DD/MM/YYYY)</mat-label>
+    <input matInput placeholder="DD/MM/YYYY" type="text" #date/>
+    </mat-form-field>
+    <button  mat-raised-button color="primary" (click)="getInputDate(date.value)">Search match by date</button>
+    <button  mat-raised-button color="primary" (click)="getMatchesData()">Reset match table</button>
   </div>
   <h2>{{ addMatchResponse }}</h2>
 </div>

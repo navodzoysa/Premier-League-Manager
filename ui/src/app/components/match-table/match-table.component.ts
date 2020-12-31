@@ -15,6 +15,8 @@ export class MatchTableComponent implements OnInit {
   addedMatch: Match | undefined;
   addMatchResponse: string | undefined;
   @ViewChild("matchTable") table: MatTable<Match> | undefined;
+  date: string | undefined;
+  @ViewChild('date') dateInput: any;
 
   constructor(private appService: AppService) {}
 
@@ -68,5 +70,18 @@ export class MatchTableComponent implements OnInit {
     });
     // @ts-ignore
     this.table.renderRows();
+  }
+
+  public getInputDate(value: string) {
+    let dateRegex = /([0-2]\d{1}|3[0-1])\/(0\d{1}|1[0-2])\/\d{4}/;
+    this.date = value;
+    this.dateInput.nativeElement.value = '';
+    if(this.date.match(dateRegex)) {
+      console.log("correct");
+    }
+    else{
+
+    }
+    console.log(value);
   }
 }

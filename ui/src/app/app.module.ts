@@ -12,6 +12,8 @@ import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClubTableComponent } from './components/club-table/club-table.component';
 import { MatchTableComponent } from './components/match-table/match-table.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 // const routes: Routes = [
 //   {
@@ -52,6 +54,8 @@ import { MatchTableComponent } from './components/match-table/match-table.compon
     }),
     MatTableModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
     // RouterModule.forRoot(routes)
   ],
   providers: [

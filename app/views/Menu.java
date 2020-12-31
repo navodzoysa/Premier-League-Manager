@@ -206,56 +206,12 @@ public class Menu {
 				System.out.println("Invalid minute! Please enter a valid minute");
 				continue;
 			}
-			if(validateDate(day, month, year)) {
+			if(premierLeague.validateDate(day, month, year)) {
 				DateTime matchDate = new DateTime(day, month, year, hour, minute);
 				Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
 				premierLeague.addMatch(match);
 			}
 			break;
-		}
-	}
-
-	public static boolean validateDate(int day ,int month ,int year) {
-		Boolean leapYear = false;
-		Boolean isValidDate = false;
-		if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-			leapYear = true;
-		}
-		if(leapYear && month == 2) {
-			if(day > 0 && day <= 29) {
-				return isValidDate = true;
-			}
-			else{
-				System.out.println("Invalid day! Please enter a valid day.");
-				return isValidDate = false;
-			}
-		}
-		else if(!leapYear && month == 2) {
-			if(day > 0 && day <= 28) {
-				return isValidDate = true;
-			}
-			else{
-				System.out.println("Invalid day! Please enter a valid day.");
-				return isValidDate = false;
-			}
-		}
-		else if(month == 4 || month == 6 || month == 9 || month == 11) {
-			if(day > 0 && day <= 30) {
-				return isValidDate = true;
-			}
-			else{
-				System.out.println("Invalid day! Please enter a valid day.");
-				return isValidDate = false;
-			}
-		}
-		else{
-			if(day > 0 && day <= 31) {
-				return isValidDate = true;
-			}
-			else{
-				System.out.println("Invalid day! Please enter a valid day.");
-				return isValidDate = false;
-			}
 		}
 	}
 }
