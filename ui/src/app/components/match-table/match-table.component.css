@@ -1,6 +1,37 @@
-table {
-  width: 50%;
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
+.header {
+  flex: 0 0 100%;
+}
+
+.table-area {
+  flex: 1 1 auto;
+  width: 60%;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.table-container {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.button-area {
+  flex: 2;
+}
+
 th, td {
   text-align: left;
 }

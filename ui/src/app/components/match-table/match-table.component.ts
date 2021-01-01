@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Match} from "../../models/Match";
 import {AppService} from "../../app.service";
 import {MatTable} from "@angular/material/table";
-import {SportsClub} from "../../models/SportsClub";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-match-table',
@@ -14,9 +14,11 @@ export class MatchTableComponent implements OnInit {
   matchesData: Match[] = [];
   addedMatch: Match | undefined;
   addMatchResponse: string | undefined;
-  @ViewChild("matchTable") table: MatTable<Match> | undefined;
+  @ViewChild('matchTable') table: MatTable<Match> | undefined;
   date: string | undefined;
   @ViewChild('date') dateInput: any;
+  errorMessage: string | undefined;
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   constructor(private appService: AppService) {}
 
@@ -93,12 +95,12 @@ export class MatchTableComponent implements OnInit {
           this.table.renderRows();
         }
         else {
-          console.log("No matches found for this date");
+          this.errorMessage = "No matches found for this date";
         }
       })
     }
     else{
-      console.log("Invalid date! Please enter a valid date");
+      this.errorMessage = "Invalid date! Please enter a valid date";
     }
   }
 }

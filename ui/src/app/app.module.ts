@@ -2,10 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 // import { RouteExampleComponent } from './route-example/route-example.component';
-
 import { AppService } from './app.service';
 import { AppHttpInterceptorService } from './http-interceptor.service';
 import {MatTableModule} from '@angular/material/table';
@@ -14,29 +12,7 @@ import { ClubTableComponent } from './components/club-table/club-table.component
 import { MatchTableComponent } from './components/match-table/match-table.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-
-// const routes: Routes = [
-//   {
-//     path: 'java',
-//     component: RouteExampleComponent,
-//     data: { technology: 'Java' }
-//   },
-//   {
-//     path: 'play',
-//     component: RouteExampleComponent,
-//     data: { technology: 'Play' }
-//   },
-//   {
-//     path: 'angular',
-//     component: RouteExampleComponent,
-//     data: { technology: 'Angular' }
-//   },
-//   {
-//     path: '**',
-//     redirectTo: '/play',
-//     pathMatch: 'full'
-//   }
-// ];
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -56,6 +32,7 @@ import {MatInputModule} from "@angular/material/input";
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
+    MatPaginatorModule,
     // RouterModule.forRoot(routes)
   ],
   providers: [
@@ -66,7 +43,7 @@ import {MatInputModule} from "@angular/material/input";
       useClass: AppHttpInterceptorService
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
