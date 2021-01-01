@@ -1,23 +1,33 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { SportsClub } from '../../models/SportsClub';
 import { AppService } from '../../app.service';
 import {MatTable} from "@angular/material/table";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-club-table',
   templateUrl: './club-table.component.html',
   styleUrls: ['./club-table.component.css']
 })
-export class ClubTableComponent implements OnInit {
+
+export class ClubTableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['clubName', 'matchesPlayed', 'wins', 'losses', 'draws',
                                 'goalsScored', 'goalsReceived', 'goalDifference', 'points'];
   clubData: SportsClub[] = [];
   @ViewChild("clubTable") table: MatTable<SportsClub> | undefined;
+  subscription: Subscription | undefined;
 
   constructor(private appService: AppService) {}
 
+  ngOnDestroy(): void {
+        this.subscription?.unsubscribe();
+    }
+
   ngOnInit(): void {
     this.getClubsData();
+    this.subscription = this.appService.listenTableEvent().subscribe( event => {
+      this.sortClubsPoints();
+    });
   }
 
   public getClubsData() :void {

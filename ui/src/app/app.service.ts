@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs/index';
+import {Observable, Subject} from 'rxjs/index';
 
 /**
  * Class representing application service.
@@ -20,6 +20,7 @@ export class AppService {
   private matchUrl = '/api/match';
   private serviceUrl = '/api/summary';
   private dataPostTestUrl = '/api/match';
+  private tableEvent: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient) {
   }
@@ -60,6 +61,14 @@ export class AppService {
 
   public postRandomMatch(): Observable<any> {
     return this.http.post(this.matchUrl, {});
+  }
+
+  public listenTableEvent() {
+    return this.tableEvent.asObservable();
+  }
+
+  public tableEventObserver(value: any) {
+    this.tableEvent.next(value);
   }
 
   /**

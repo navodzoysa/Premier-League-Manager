@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Match} from "../../models/Match";
 import {AppService} from "../../app.service";
 import {MatTable} from "@angular/material/table";
@@ -53,6 +53,7 @@ export class MatchTableComponent implements OnInit {
       this.addMatchResponse = JSON.stringify(this.addedMatch);
       // @ts-ignore
       this.table.renderRows();
+      this.appService.tableEventObserver("update");
     });
   }
 
