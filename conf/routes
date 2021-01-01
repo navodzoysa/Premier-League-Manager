@@ -16,6 +16,8 @@ GET     /api/matches                controllers.MatchController.listMatches()
 GET     /api/sortmatches            controllers.MatchController.sortMatches()
 +nocsrf
 POST    /api/match                  controllers.MatchController.create()
++nocsrf
+POST     /api/filtermatches         controllers.MatchController.filterMatches(request: Request)
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 GET     /api/summary                controllers.HomeController.appSummary

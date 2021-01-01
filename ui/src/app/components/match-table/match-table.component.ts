@@ -73,16 +73,32 @@ export class MatchTableComponent implements OnInit {
     this.table.renderRows();
   }
 
-  public getInputDate(value: string) {
+  public getFilteredMatches(value: string) {
     let dateRegex = /([0-2]\d{1}|3[0-1])\/(0\d{1}|1[0-2])\/\d{4}/;
     this.date = value;
     this.dateInput.nativeElement.value = '';
     if(this.date.match(dateRegex)) {
-      console.log("correct");
+      this.appService.searchMatch(this.date).subscribe((data:any) => {
+        if(data.response != "No matches found") {
+          this.matchesData = data.response.map((match: any) => ({
+            teamA: match.teamAName,
+            teamAScore: match.teamAScore,
+            teamBScore: match.teamBScore,
+            teamB: match.teamBName,
+            date: match.matchDate.day + '/' + match.matchDate.month + '/'
+              + match.matchDate.year + ' at ' + match.matchDate.hour + ':' + match.matchDate.minute,
+            randomMatch: match.isMatchRandom
+          }));
+          // @ts-ignore
+          this.table.renderRows();
+        }
+        else {
+          console.log("No matches found for this date");
+        }
+      })
     }
     else{
-
+      console.log("Invalid date! Please enter a valid date");
     }
-    console.log(value);
   }
 }

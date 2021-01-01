@@ -48,7 +48,7 @@
     <mat-label>Search date(DD/MM/YYYY)</mat-label>
     <input matInput placeholder="DD/MM/YYYY" type="text" #date/>
     </mat-form-field>
-    <button  mat-raised-button color="primary" (click)="getInputDate(date.value)">Search match by date</button>
+    <button  mat-raised-button color="primary" (click)="getFilteredMatches(date.value)">Search match by date</button>
     <button  mat-raised-button color="primary" (click)="getMatchesData()">Reset match table</button>
   </div>
   <h2>{{ addMatchResponse }}</h2>

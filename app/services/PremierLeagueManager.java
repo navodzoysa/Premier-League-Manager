@@ -288,6 +288,23 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 		Collections.sort(matchList, new DateComparator());
 	}
 
+	public List<Match> filterMatchDates(String date) {
+		String[] splitDate = date.split("/");
+		int day = Integer.parseInt(splitDate[0]);
+		int month = Integer.parseInt(splitDate[1]);
+		int year = Integer.parseInt(splitDate[2]);
+		List<Match> filteredList = new ArrayList<>();
+		for(Match match : matchList) {
+			if(match.getMatchDate().getYear() == year &&
+				match.getMatchDate().getMonth() == month &&
+				match.getMatchDate().getDay() == day)
+			{
+				filteredList.add(match);
+			}
+		}
+		return filteredList;
+	}
+
 	public boolean validateDate(int day ,int month ,int year) {
 		boolean leapYear = false;
 		boolean isValidDate = false;

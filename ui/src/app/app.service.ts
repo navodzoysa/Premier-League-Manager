@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs/index';
@@ -20,6 +20,7 @@ export class AppService {
   private matchUrl = '/api/match';
   private serviceUrl = '/api/summary';
   private dataPostTestUrl = '/api/match';
+  private filterMatchesUrl = '/api/filtermatches';
   private tableEvent: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient) {
@@ -69,6 +70,10 @@ export class AppService {
 
   public tableEventObserver(value: any) {
     this.tableEvent.next(value);
+  }
+
+  public searchMatch(date: string) {
+    return this.http.post(this.filterMatchesUrl, {date});
   }
 
   /**
