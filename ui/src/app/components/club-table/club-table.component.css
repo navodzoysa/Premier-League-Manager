@@ -6,13 +6,16 @@
 
 .header {
   flex: 0 0 100%;
+  background-color: #37003c;
+  color: white;
+  margin-bottom: 0;
 }
 
 .table-area {
   flex: 1 1 auto;
   width: 60%;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 2px;
 }
 
 .table-container {
@@ -30,6 +33,20 @@
 
 .button-area {
   flex: 2;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+button {
+  float: left;
+  margin-left: 30%;
+  margin-bottom: 8%;
+  clear: both;
+}
+
+.mat-button-color {
+  background-color: #37003c;
 }
 
 th, td {

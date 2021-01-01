@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Match} from "../../models/Match";
 import {AppService} from "../../app.service";
 import {MatTable} from "@angular/material/table";
@@ -13,7 +13,10 @@ export class MatchTableComponent implements OnInit {
   displayedColumns: string[] = ['teamA', 'teamAScore', 'teamBScore', 'teamB', 'date', 'random'];
   matchesData: Match[] = [];
   addedMatch: Match | undefined;
-  addMatchResponse: string | undefined;
+  addMatchTeams: string | undefined;
+  addMatchScore: string | undefined;
+  addMatchDate: string | undefined;
+  addMatchRand: string | undefined;
   @ViewChild('matchTable') table: MatTable<Match> | undefined;
   date: string | undefined;
   @ViewChild('date') dateInput: any;
@@ -52,7 +55,11 @@ export class MatchTableComponent implements OnInit {
         + response.matchDate.year + ' at ' + response.matchDate.hour + ':' + response.matchDate.minute;
       this.addedMatch.randomMatch = response.isMatchRandom;
       this.matchesData.push(this.addedMatch);
-      this.addMatchResponse = JSON.stringify(this.addedMatch);
+
+      this.addMatchTeams = "Teams: " + this.addedMatch.teamA + " vs " + this.addedMatch.teamB;
+      this.addMatchScore = "Score: " + this.addedMatch.teamAScore + " - " + this.addedMatch.teamBScore;
+      this.addMatchDate = "Date: " + this.addedMatch.date;
+      this.addMatchRand = "Randomly Generated: " + this.addedMatch.randomMatch;
       // @ts-ignore
       this.table.renderRows();
       this.appService.tableEventObserver("update");
@@ -93,6 +100,7 @@ export class MatchTableComponent implements OnInit {
           }));
           // @ts-ignore
           this.table.renderRows();
+          this.errorMessage = undefined;
         }
         else {
           this.errorMessage = "No matches found for this date";

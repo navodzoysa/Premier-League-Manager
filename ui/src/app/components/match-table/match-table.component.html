@@ -46,15 +46,24 @@
   </div>
   <br>
   <div class="button-area">
-    <button mat-raised-button color="primary" (click)="addRandomMatch()">Add a random match</button>
-    <p>{{ addMatchResponse }}</p>
-    <button  mat-raised-button color="primary" (click)="sortMatchDates()">Sort matches based on date</button>
-    <mat-form-field>
-    <mat-label>Search date(DD/MM/YYYY)</mat-label>
-    <input matInput placeholder="DD/MM/YYYY" type="text" #date/>
+    <div class="output-match-res">
+      <h2>Last Match Played</h2>
+      <p>{{ addMatchTeams }}</p>
+      <p>{{ addMatchScore }}</p>
+      <p>{{ addMatchDate }}</p>
+      <p>{{ addMatchRand }}</p>
+    </div>
+    <button mat-raised-button color="button-color" (click)="addRandomMatch()">Add a random match</button>
+    <button  mat-raised-button color="button-color" (click)="sortMatchDates()">Sort matches by date</button>
+    <mat-form-field appearance="outline">
+      <mat-label>Search date(DD/MM/YYYY)</mat-label>
+      <input matInput placeholder="DD/MM/YYYY" type="text" #date/>
     </mat-form-field>
-    <p>{{ errorMessage }}</p>
-    <button  mat-raised-button color="primary" (click)="getFilteredMatches(date.value)">Search match by date</button>
-    <button  mat-raised-button color="primary" (click)="getMatchesData()">Reset match table</button>
+    <p class="error-message">{{ errorMessage }}</p>
+    <button  mat-raised-button color="button-color" (click)="getFilteredMatches(date.value)">Search match by date</button>
+    <button  mat-raised-button color="button-color" (click)="getMatchesData()">Reset match table</button>
   </div>
 </div>
+<footer>
+  <p>Created by Navod Zoysa</p>
+</footer>

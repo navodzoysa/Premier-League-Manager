@@ -239,14 +239,13 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	}
 
 	public Match addRandomMatch() {
-		int day = random.nextInt(30) + 1;
-		int month = random.nextInt(12) + 1;
-		int year = random.nextInt(2020-1990) + 1990;
-		int hour = random.nextInt(22) + 1;
-		int minute = random.nextInt(58) + 1;
-		DateTime dateTime = new DateTime(day, month, year, hour, minute);
-
 		while(true) {
+			int day = random.nextInt(30) + 1;
+			int month = random.nextInt(12) + 1;
+			int year = random.nextInt(2020-1990) + 1990;
+			int hour = random.nextInt(22) + 1;
+			int minute = random.nextInt(58) + 1;
+			DateTime dateTime = new DateTime(day, month, year, hour, minute);
 			int teamAIndex = random.nextInt(clubListLength());
 			int teamBIndex = random.nextInt(clubListLength());
 			if(teamAIndex == teamBIndex) {
