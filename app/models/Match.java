@@ -64,7 +64,7 @@ public class Match implements Serializable {
 		return matchDate;
 	}
 
-	public void setIsMatchRandom(Boolean isMatchRandom) {
+	public void setIsMatchRandom(boolean isMatchRandom) {
 		this.isMatchRandom = isMatchRandom;
 	}
 

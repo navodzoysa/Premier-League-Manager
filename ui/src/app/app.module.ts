@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-// import { RouteExampleComponent } from './route-example/route-example.component';
 import { AppService } from './app.service';
 import { AppHttpInterceptorService } from './http-interceptor.service';
 import {MatTableModule} from '@angular/material/table';
@@ -19,7 +17,6 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     AppComponent,
     ClubTableComponent,
     MatchTableComponent,
-    // RouteExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +30,6 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatButtonModule,
     MatInputModule,
     MatPaginatorModule,
-    // RouterModule.forRoot(routes)
   ],
   providers: [
     AppService,

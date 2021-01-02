@@ -3,7 +3,6 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Match;
-import play.api.libs.json.JsObject;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;

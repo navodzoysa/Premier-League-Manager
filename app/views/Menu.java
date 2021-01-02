@@ -10,6 +10,7 @@ public class Menu {
 	private static PremierLeagueManager premierLeague = new PremierLeagueManager();
 	private static Scanner scanner = new Scanner(System.in);
 	private static Process process = null;
+	private static boolean guiRunning = false;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		premierLeague.loadFromFile();
@@ -51,17 +52,27 @@ public class Menu {
 					addMatch();
 					break;
 				case 6:
-					ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "sbt run");
-					process = processBuilder.start();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-					String line = "";
-					while ((line = reader.readLine()) != null) {
-						if(reader.readLine().isEmpty()) {
-							break;
-						}
-						System.out.println(line);
+					if(guiRunning) {
+						System.out.println("An instance of GUI is already running on port 4200");
+						break;
 					}
-					reader.close();
+					if(premierLeague.clubListLength() > 1 && !guiRunning) {
+						ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "sbt run");
+						process = processBuilder.start();
+						BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+						String line = "";
+						while ((line = reader.readLine()) != null) {
+							if (reader.readLine().isEmpty()) {
+								break;
+							}
+							System.out.println(line);
+						}
+						reader.close();
+						guiRunning = true;
+					}
+					else {
+						System.out.println("Please add atleast two clubs to open the premier league table in GUI");
+					}
 					break;
 				case 7:
 					premierLeague.saveToFile();
