@@ -18,8 +18,6 @@ export class AppService {
   private matchesUrl = '/api/matches';
   private sortMatchesUrl = '/api/sortmatches';
   private matchUrl = '/api/match';
-  private serviceUrl = '/api/summary';
-  private dataPostTestUrl = '/api/match';
   private filterMatchesUrl = '/api/filtermatches';
   private tableEvent: Subject<any> = new Subject<any>();
 

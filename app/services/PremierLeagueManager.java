@@ -27,10 +27,12 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 
 	@Override
 	public void deleteClub(String clubName) {
-		for(SportsClub club : clubList) {
-			if(clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
-				clubList.remove(club);
-				break;
+		if(!isClubListEmpty()) {
+			for (SportsClub club : clubList) {
+				if (clubName.toLowerCase().equals(club.getClubName().toLowerCase())) {
+					clubList.remove(club);
+					break;
+				}
 			}
 		}
 		sortPoints();
@@ -175,9 +177,11 @@ public class PremierLeagueManager implements Serializable, LeagueManager {
 	}
 
 	public boolean checkForClub(String clubName) {
-		for(SportsClub club : clubList) {
-			if(club.getClubName().toLowerCase().equals(clubName.toLowerCase())) {
-				return true;
+		if(!isClubListEmpty()) {
+			for (SportsClub club : clubList) {
+				if (club.getClubName().toLowerCase().equals(clubName.toLowerCase())) {
+					return true;
+				}
 			}
 		}
 		return false;

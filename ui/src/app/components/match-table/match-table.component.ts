@@ -111,4 +111,9 @@ export class MatchTableComponent implements OnInit {
       this.errorMessage = "Invalid date! Please enter a valid date";
     }
   }
+
+  public resetTables() {
+    this.getMatchesData();
+    this.appService.tableEventObserver("update tables");
+  }
 }

@@ -95,12 +95,28 @@ public class Menu {
 			try{
 				System.out.println("\nEnter the name of the club");
 				String clubName = scanner.nextLine();
+				if(clubName.trim().isEmpty()) {
+					System.out.println("\nNo name entered please enter a valid name");
+					return;
+				}
+				if(clubName.matches("[0-9]+")) {
+					System.out.println("\nNumbers are not allowed!!! Please enter a valid name");
+					return;
+				}
 				if(premierLeague.checkForClub(clubName)) {
 					System.out.println("\n" + clubName + " is already in the premier league");
 					return;
 				}
 				System.out.println("Enter the location of the club");
 				String clubLocation = scanner.nextLine();
+				if(clubLocation.trim().isEmpty()) {
+					System.out.println("\nNo location entered please enter a valid location");
+					return;
+				}
+				if(clubLocation.matches("[0-9]+")) {
+					System.out.println("\nNumbers are not allowed!!! Please enter a valid name");
+					return;
+				}
 				SportsClub club = new FootballClub(clubName, clubLocation);
 				premierLeague.addClub(club);
 			}
@@ -162,67 +178,73 @@ public class Menu {
 			System.out.println("Please add atleast two clubs to add a match!!");
 			return;
 		}
-		premierLeague.displayClubNames();
-		System.out.println("\nEnter the home team from the above club list");
-		String teamA = scanner.nextLine();
-		if(!premierLeague.checkForClub(teamA)) {
-			System.out.println(teamA + " does not exist in the premier league.");
-			return;
-		}
-		System.out.println("Enter the away team from the above club list");
-		String teamB = scanner.nextLine();
-		if(!premierLeague.checkForClub(teamB)) {
-			System.out.println(teamB + " does not exist in the premier league.");
-			return;
-		}
-		SportsClub clubA = premierLeague.getClubFromList(teamA);
-		SportsClub clubB = premierLeague.getClubFromList(teamB);
-		if(clubA.equals(clubB)) {
-			System.out.println("Cannot play against the same team!!! Please select two separate teams.");
-			return;
-		}
+		try {
+			premierLeague.displayClubNames();
+			System.out.println("\nEnter the home team from the above club list");
+			String teamA = scanner.nextLine();
+			if (!premierLeague.checkForClub(teamA)) {
+				System.out.println(teamA + " does not exist in the premier league.");
+				return;
+			}
+			System.out.println("Enter the away team from the above club list");
+			String teamB = scanner.nextLine();
+			if (!premierLeague.checkForClub(teamB)) {
+				System.out.println(teamB + " does not exist in the premier league.");
+				return;
+			}
+			SportsClub clubA = premierLeague.getClubFromList(teamA);
+			SportsClub clubB = premierLeague.getClubFromList(teamB);
+			if (clubA.equals(clubB)) {
+				System.out.println("Cannot play against the same team!!! Please select two separate teams.");
+				return;
+			}
 
-		System.out.println("Enter the goals scored by " + teamA);
-		int teamAScore = scanner.nextInt();
-		System.out.println("Enter the goals scored by " + teamB);
-		int teamBScore = scanner.nextInt();
-		while(true) {
-			System.out.println("Enter the day(DD)");
-			int day = scanner.nextInt();
-			if(day <= 0 || day > 31) {
-				System.out.println("Invalid day! Please enter a valid day");
-				continue;
+			System.out.println("Enter the goals scored by " + teamA);
+			int teamAScore = scanner.nextInt();
+			System.out.println("Enter the goals scored by " + teamB);
+			int teamBScore = scanner.nextInt();
+			while (true) {
+				System.out.println("Enter the day(DD)");
+				int day = scanner.nextInt();
+				if (day <= 0 || day > 31) {
+					System.out.println("Invalid day! Please enter a valid day");
+					continue;
+				}
+				System.out.println("Enter the month(MM)");
+				int month = scanner.nextInt();
+				if (month <= 0 || month > 12) {
+					System.out.println("Invalid month! Please enter a valid month");
+					continue;
+				}
+				System.out.println("Enter the year(YYYY)");
+				int year = scanner.nextInt();
+				if (year < 1990 || String.valueOf(year).length() != 4) {
+					System.out.println("Invalid year! Please enter a valid year");
+					continue;
+				}
+				System.out.println("Enter the hour of the match in 24 hour format(HH)");
+				int hour = scanner.nextInt();
+				if (hour < 0 || hour > 23) {
+					System.out.println("Invalid hour! Please enter a valid hour");
+					continue;
+				}
+				System.out.println("Enter the minutes of the match(MM)");
+				int minute = scanner.nextInt();
+				if (minute < 0 || minute > 59) {
+					System.out.println("Invalid minute! Please enter a valid minute");
+					continue;
+				}
+				if (premierLeague.validateDate(day, month, year)) {
+					DateTime matchDate = new DateTime(day, month, year, hour, minute);
+					Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
+					premierLeague.addMatch(match);
+				}
+				break;
 			}
-			System.out.println("Enter the month(MM)");
-			int month = scanner.nextInt();
-			if(month <= 0 || month > 12) {
-				System.out.println("Invalid month! Please enter a valid month");
-				continue;
-			}
-			System.out.println("Enter the year(YYYY)");
-			int year = scanner.nextInt();
-			if(year < 1990) {
-				System.out.println("Invalid year! Please enter a valid year");
-				continue;
-			}
-			System.out.println("Enter the hour of the match in 24 hour format(HH)");
-			int hour = scanner.nextInt();
-			if(hour < 0 || hour > 23) {
-				System.out.println("Invalid hour! Please enter a valid hour");
-				continue;
-			}
-			System.out.println("Enter the minutes of the match(MM)");
-			int minute = scanner.nextInt();
-			if(minute < 0 || minute > 59) {
-				System.out.println("Invalid minute! Please enter a valid minute");
-				continue;
-			}
-			if(premierLeague.validateDate(day, month, year)) {
-				DateTime matchDate = new DateTime(day, month, year, hour, minute);
-				Match match = new Match(clubA, clubB, teamAScore, teamBScore, matchDate);
-				premierLeague.addMatch(match);
-			}
-			break;
+		}
+		catch (InputMismatchException e) {
+			System.out.println("\nInput Invalid!!! Please enter valid characters");
+			scanner.nextLine();
 		}
 	}
 }
